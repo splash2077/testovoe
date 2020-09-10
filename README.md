@@ -1,4 +1,4 @@
-# bankprofile
+# user/project table
 
 ## Project setup
 ```
