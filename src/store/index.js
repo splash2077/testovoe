@@ -54,6 +54,11 @@ export default new Vuex.Store({
           banned: false,
         },
       ];
+    },
+
+    SET_PROJECT_USER_PERMISSION(state, {user, chmod}) {
+      user.chmod = chmod;
     }
+
   }
 })

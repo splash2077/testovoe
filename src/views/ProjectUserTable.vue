@@ -25,7 +25,7 @@
                 <v-row v-for="user in item.users" :key="user.id">
                   <v-col cols="3">{{ "User " + user.id }}</v-col>
                   <v-col cols="12" sm="3">
-                    <permissions-check-box :chmod="user.chmod" @rwx="user.chmod = $event"></permissions-check-box>
+                    <permissions-check-box :chmod="user.chmod" @rwx="setPermission({user, chmod: $event})"></permissions-check-box>
                   </v-col>
                   <v-col cols="12">
                     <v-divider :inset="false"></v-divider>
@@ -119,7 +119,7 @@
                   <v-col cols="3" sm="6" md="4">
                     <permissions-check-box
                       :chmod="getUserPermission(project, item.id).chmod"
-                      @rwx="getUserPermission(project, item.id).chmod = $event"
+                      @rwx="setPermission({user: getUserPermission(project, item.id), chmod:$event})"
                     ></permissions-check-box>
                   </v-col>
 
@@ -138,7 +138,7 @@
 
 <script>
 // @ is an alias to /src
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 import permissionsCheckBox from "@/components/PermissionsCheckBox";
 export default {
   name: "BankProfile",
@@ -204,6 +204,11 @@ export default {
   },
 
   methods: {
+
+    ...mapMutations({
+      setPermission: 'SET_PROJECT_USER_PERMISSION'
+    }),
+
     info() {
       console.info("new user");
     },
