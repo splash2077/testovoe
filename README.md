@@ -1,3 +1,6 @@
+ Нужное было сделать задание описанное в:
+[таска](./task.txt)
+
 # user/project table
 
 ## Project setup
